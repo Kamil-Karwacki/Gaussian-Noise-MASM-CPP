@@ -35,9 +35,6 @@ namespace GUI_App
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double[] time = new double[20];
-            for (int j = 0; j < 21; j++)
-            {
                 if (pictureBox1.Image == null)
                 {
                     InfoLabel.Text = "You must choose an Image!";
@@ -84,18 +81,13 @@ namespace GUI_App
                 Console.WriteLine($"Time: {sw.Elapsed.TotalMilliseconds} ms");
                 Console.WriteLine($"Ticks: {sw.ElapsedTicks}");
                 InfoLabel.Text = $"Time: {sw.Elapsed.TotalMilliseconds} ms";
-                if(j != 0)
-                    time[j-1] = sw.Elapsed.TotalMilliseconds;
                 bmp.UnlockBits(bmpData);
 
                 pictureBox2.Image = bmp;
                 pictureBox2.Refresh();
                 Console.WriteLine($"Added noise to the image {pictureBox1.ImageLocation} strength: {noiseInput.Value}");
             }
-
-            string[] czasy = time.Select(d => d.ToString(new CultureInfo("pl-PL"))).ToArray();
-            File.WriteAllLines("czasy.csv", czasy);
-        }
+  
 
         private Bitmap ConvertTo32bpp(string sciezkaDoPliku)
         {
